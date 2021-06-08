@@ -46,10 +46,11 @@ class AplikasiController {
     const { id } =req.params
     const { nama_aplikasi, keterangan, jumlah_pengguna, pendiri, tanggal_didirikan } = req.body
     const updateAplikai = { nama_aplikasi, keterangan, jumlah_pengguna, pendiri, tanggal_didirikan }
+    console.log(updateAplikai);
     try {
       await Aplikasi.update(updateAplikai, { where: { id } })
       
-      res.status(200).json(aplikasi)
+      res.status(200).json({ message: 'Success' })
     } catch (error) {
       console.log(error)
     }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { addNewData, editDataAplikasi  } from '../store/action'
@@ -7,6 +7,7 @@ import { addNewData, editDataAplikasi  } from '../store/action'
 export default function Form({ edit, data : detailData }) {
   const history = useHistory()
   const dispatch = useDispatch()
+  const { id } = useParams()
   const [data, setData] = useState({
     nama_aplikasi: '',
     keterangan: '',
@@ -48,8 +49,7 @@ export default function Form({ edit, data : detailData }) {
 
   function handleButtonEdit(event) {
     event.preventDefault()
-    const allData = { ...data, history}
-    dispatch(editDataAplikasi(allData))
+    dispatch(editDataAplikasi({ ...data, history, id}))
   }
 
   return (

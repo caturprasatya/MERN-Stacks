@@ -51,12 +51,11 @@ export const fetchDetailAplikasi = (payload) => {
   const { id } = payload
   return async (dispatch) => {
     try {
+      dispatch(setLoading(true))
       const { data } = await axios({
         url: baseUrl+'/'+id,
         method: "GET"
       })
-      console.log(data);
-      dispatch(setLoading(true))
       dispatch(setDetailAplikasi(data))
       dispatch(setLoading(false))
     } catch (error) {
@@ -89,6 +88,7 @@ export const editDataAplikasi = (payload) => {
   const allData = { nama_aplikasi, keterangan, jumlah_pengguna, pendiri, tanggal_didirikan }
   return async (dispatch) => {
     try {
+      console.log(id);
       await axios({
         url: baseUrl+'/'+id,
         method: "PUT",
